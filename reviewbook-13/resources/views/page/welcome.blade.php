@@ -1,23 +1,24 @@
 @extends('layout.master')
 
 @section('title')
-    Halaman Dashboard   
+    Register
+@endsection
+
+@section('section-title')
+    HALAMAN Dashboard
 @endsection
 
 @section('content')
     <div class="container py-5">
-        <!-- Heading Section -->
         <div class="text-center mb-5">
             <h1 class="display-3 text-primary">Selamat Datang, {{ $fullName }}!</h1>
             <h2 class="h4 text-secondary">Terima Kasih telah Bergabung di SanberBook. Social Media Kita Bersama!</h2>
         </div>
 
-        <!-- Profile Icon Section -->
         <div class="text-center mb-5">
             <i class="bi bi-person-circle" style="font-size: 100px; color: #007bff;"></i>
         </div>
 
-        <!-- Welcome Card Section -->
         <div class="card shadow-lg p-4">
             <div class="card-body">
                 <h4 class="card-title">Welcome to SanberBook</h4>
@@ -28,7 +29,6 @@
             </div>
         </div>
 
-        <!-- Call to Action Button -->
         <div class="text-center mt-4">
             <a href="/explore" class="btn btn-primary btn-lg">Mulai Eksplorasi</a>
         </div>

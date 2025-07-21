@@ -1,7 +1,11 @@
 @extends('layout.master')
 
 @section('title')
-    Form Pendaftaran
+    Register
+@endsection
+
+@section('section-title')
+    REGISTER
 @endsection
 
 @section('content')
