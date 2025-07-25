@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('profile', function (Blueprint $table) {
-            $table->id();
-            $table->integer('age');
-            $table->text('address');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->timestamps();
-        });
+       Schema::create('profile', function (Blueprint $table) {
+    $table->id();
+    $table->integer('age');
+    $table->string('address', 255);
+    $table->unsignedBigInteger('user_id');
+    $table->foreign('user_id')->references('id')->on('users');
+    $table->timestamps();
+});
     }
 
     /**
