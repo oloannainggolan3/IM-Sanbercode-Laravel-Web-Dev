@@ -6,7 +6,31 @@
 
 @section('content')
 <div class="container py-5">
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
+@if (session('warning'))
+    <div class="alert alert-warning">
+        {{ session('warning') }}
+    </div>
+@endif
+
+
+@auth
+            <h1>Selamat Datang, {{auth()->user()->name}} 
+                @if (Auth()->user()->profile)
+                ({{Auth()->user()->profile->age}}Tahun)
+                @else
+                
+                @endif
+            
+
+            </h1>
+
+@endauth
     <div class="text-center mb-5">
         <h1 class="display-3 text-primary">SanberBook</h1>
         <h2 class="h3 text-secondary">Social Media Developer Santai Berkualitas</h2>

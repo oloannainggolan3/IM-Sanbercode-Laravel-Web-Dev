@@ -1,40 +1,117 @@
- <header id="header" class="header d-flex align-items-center sticky-top">
-    <div class="container position-relative d-flex align-items-center">
+<header id="header" class="bg-white shadow-sm sticky-top py-3">
+  <div class="container d-flex justify-content-between align-items-center flex-wrap">
 
-      <a href="/" class="logo d-flex align-items-center me-auto">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">Company</h1><span>.</span>
+    <!-- Logo -->
+    <a href="/" class="d-flex align-items-center text-decoration-none mb-2 mb-lg-0">
+      <i class="bi bi-book-half fs-3 text-success me-2"></i>
+      <span class="fs-4 fw-bold text-success-emphasis">BookZone<span class="text-primary">.</span></span>
+    </a>
+
+    <!-- Navigation Menu for Desktop -->
+<nav id="navmenu" class="d-none d-xl-block">
+  <ul class="nav list-unstyled mb-0 gap-3">
+
+    <li>
+      <a href="/" class="nav-link text-dark fw-semibold {{ request()->is('/') ? 'active' : '' }}">
+        Home
       </a>
+    </li>
 
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li class="dropdown"><a href="about.html"><span>About</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="team.html">Team</a></li>
-              <li><a href="testimonials.html">Testimonials</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                  <li><a href="#">R</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li><a href="/register">Register</a></li>
-          <li><a href="/welcome">Dashboard</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
+    <li>
+      <a href="/register" class="nav-link text-dark fw-semibold {{ request()->is('register') ? 'active' : '' }}">
+        Register
+      </a>
+    </li>
 
-      
+    <li>
+      <a href="/welcome" class="nav-link text-dark fw-semibold {{ request()->is('welcome') ? 'active' : '' }}">
+        Dashboard
+      </a>
+    </li>
 
+    <li>
+      <a href="/genres" class="nav-link text-dark fw-semibold {{ request()->is('genres') ? 'active' : '' }}">
+        Genres
+      </a>
+    </li>
+
+    <li>
+      <a href="/books" class="nav-link text-dark fw-semibold {{ request()->is('books') ? 'active' : '' }}">
+        Books
+      </a>
+    </li>
+
+    @auth
+    <li>
+      <a href="/profile" class="nav-link text-dark fw-semibold {{ request()->is('profile') ? 'active' : '' }}">
+        Profile
+      </a>
+    </li>
+    @endauth
+
+  </ul>
+</nav>
+    <!-- Auth Buttons -->
+    @guest
+ 
+    <div class="d-flex align-items-center gap-2 mb-2 mb-lg-0">
+      <a href="/login" class="btn btn-outline-success rounded-pill px-3">Login</a>
+      <a href="/register" class="btn btn-success rounded-pill px-3">Register</a>
     </div>
-  </header>
+    @endguest
+
+    @auth
+    <form action="/logout" method="POST">
+      @csrf
+      <button  class="btn btn-danger">logout</button>
+    </form>        
+    @endauth
+
+
+    <!-- Mobile Nav Toggle -->
+    <i class="bi bi-list mobile-nav-toggle d-xl-none fs-3 text-dark" style="cursor: pointer;"></i>
+  </div>
+</header>
+
+<!-- Mobile Nav -->
+<nav id="mobile-nav" class="d-xl-none bg-white shadow p-4 position-absolute top-100 start-0 w-100 d-none z-3">
+  <ul class="list-unstyled mb-0">
+    <li><a href="/" class="d-block py-2 text-dark fw-semibold">🏠 Home</a></li>
+    <li><a href="/register" class="d-block py-2 text-dark fw-semibold">📝 Register</a></li>
+    <li><a href="/welcome" class="d-block py-2 text-dark fw-semibold">📊 Dashboard</a></li>
+    <li><a href="/genres" class="d-block py-2 text-dark fw-semibold">🎼 Genres</a></li>
+    <li><a href="/login" class="d-block py-2 text-dark fw-semibold">🔑 Login</a></li>
+  </ul>
+</nav>
+
+<!-- Script -->
+<script>
+  document.querySelector('.mobile-nav-toggle').addEventListener('click', () => {
+    document.getElementById('mobile-nav').classList.toggle('d-none');
+  });
+</script>
+
+<!-- Styles -->
+<style>
+  .nav-link {
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+  }
+
+  .nav-link:hover {
+    background-color: #d1e7dd;
+    color: #0f5132 !important;
+  }
+
+  .navmenu ul li a.active {
+    background-color: #198754;
+    color: white !important;
+  }
+
+  /* Extra for mobile */
+  #mobile-nav a:hover {
+    background-color: #f8f9fa;
+    border-radius: 0.375rem;
+  }
+</style>
